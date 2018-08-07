@@ -1,7 +1,8 @@
 describe("Airport", function(){
   var airport;
   var plane;
-  // var hangar = [];
+  var weather;
+  
 
   beforeEach(function(){
     plane = new Plane();
@@ -9,7 +10,7 @@ describe("Airport", function(){
   });
 
   describe("landing a plane", function() {
-    it("radds plane to hangar", function() {
+    it("adds plane to hangar", function() {
       airport.land(plane);
       expect(airport.hangar).toContain(plane);
     });
