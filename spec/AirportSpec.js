@@ -21,5 +21,9 @@ describe("Airport", function(){
       airport.takeoff(plane);
       expect(airport.hangar).not.toContain(plane);
     });
+
+    it('throws an error if plane is not in hangar', function(){
+      expect( function() {airport.takeoff(plane);}).toThrowError("Plane is not in airport");
+    });
   });
 });
