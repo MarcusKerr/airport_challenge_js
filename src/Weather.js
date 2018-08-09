@@ -1,8 +1,7 @@
 var Weather = function(){
-
+  this._CHANCEOFWEATHER = 0.5;
 }
 
-Weather.prototype.generate = function(){
-  var weatherCondition = ["Stormy", "Sunny"];
-  return weatherCondition[Math.floor ( Math.random() * weatherCondition.length )];
+Weather.prototype.isStormy = function(){
+  return ( Math.random() > this._CHANCEOFWEATHER );
 };

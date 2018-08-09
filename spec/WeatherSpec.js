@@ -5,16 +5,15 @@ describe("Weather", function(){
     weather = new Weather();
   });
   
-
   describe("generates the weather", function(){
     it("and returns stormy", function(){
-      spyOn(weather, 'generate').and.returnValue('Stormy');
-      expect(weather.generate()).toEqual("Stormy");
+      spyOn(Math, 'random').and.returnValue(1);
+      expect(weather.isStormy()).toBeTruthy();
     });
 
     it("and returns sunny", function(){
-      spyOn(weather, 'generate').and.returnValue('Sunny');
-      expect(weather.generate()).toEqual("Sunny");
+      spyOn(Math, 'random').and.returnValue(0);
+      expect(weather.isStormy()).toBeFalsy();
     });
   });
 });
