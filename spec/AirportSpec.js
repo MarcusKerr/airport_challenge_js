@@ -56,7 +56,7 @@ describe("Airport", function(){
         airport.land(plane);
       }
       var p6 = new Plane();
-      expect(function(){ airport.land(p6)}).toThrowError("Cannot land maximum capacity has been reached")
+      expect(function(){ airport.land(p6)}).toThrowError("Cannot land, maximum capacity has been reached")
     });
   });
 });

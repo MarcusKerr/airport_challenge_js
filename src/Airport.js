@@ -1,19 +1,23 @@
 'use strict';
-var Airport = function(weather_class = Weather){
+var Airport = function(weather_class = Weather, max_capacity = 5){
   this.hangar = [];
   this.weather = new weather_class();
-} 
+  this.MAX_CAPACITY = max_capacity
+}; 
 
 
 Airport.prototype.getPlanes = function(){
   return this.hangar;
-}
+};
 
 Airport.prototype.land = function(plane){
   if (this.hangar.includes(plane)){
     throw new Error(`${plane} has already landed`)
   }
-  if(this.weather.isStormy()){
+  else if (this.atCapacity()){
+    throw new Error('Cannot land, maximum capacity has been reached')
+  }
+  else if(this.weather.isStormy()){
     throw new Error(`${plane} cannot land due to stormy weather`)
   }
   this.hangar.push(plane);
@@ -28,4 +32,8 @@ Airport.prototype.takeoff = function(plane){
     return `${plane} has taken off`;
   } 
   throw new Error(`${plane} is not in airport`);
-}; 
+};
+
+Airport.prototype.atCapacity = function() {
+  return this.hangar.length === this.MAX_CAPACITY;
+}
