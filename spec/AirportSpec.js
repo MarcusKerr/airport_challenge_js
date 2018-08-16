@@ -47,4 +47,16 @@ describe("Airport", function(){
       expect( function() {airport.takeoff(plane); }).toThrowError(`${plane} cannot takeoff due to stormy weather`);
     });
   });
+
+  describe("maxCapacity", function(){
+    it("does not allow planes to land once max xapacity has been reached", function(){
+      spyOn(airport.weather, 'isStormy').and.returnValue(false);
+      for(var i = 0; i < 5; i++) {
+        plane = new Plane();
+        airport.land(plane);
+      }
+      var p6 = new Plane();
+      expect(function(){ airport.land(p6)}).toThrowError("Cannot land maximum capacity has been reached")
+    });
+  });
 });

@@ -1,5 +1,5 @@
 'use strict';
-var Airport = function(weather_class = Weather ){
+var Airport = function(weather_class = Weather){
   this.hangar = [];
   this.weather = new weather_class();
 } 
