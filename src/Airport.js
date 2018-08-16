@@ -1,12 +1,17 @@
-
-var Airport = function(weather){
+'use strict';
+var Airport = function(weather_class = Weather ){
   this.hangar = [];
-  this.weather = typeof weather !== 'undefined' ? weather : new Weather();
+  this.weather = new weather_class();
 } 
+
+
+Airport.prototype.getPlanes = function(){
+  return this.hangar;
+}
 
 Airport.prototype.land = function(plane){
  if(this.weather.isStormy()){
-   throw new Error("Cannot land due to stormy weather")
+   throw new Error(`${plane} cannot land due to stormy weather`)
  }
 this.hangar.push(plane);
 };
@@ -14,10 +19,10 @@ this.hangar.push(plane);
 Airport.prototype.takeoff = function(plane){
   if (this.hangar.includes(plane)) {
     if(this.weather.isStormy()){
-      throw new Error("Cannot takeoff due to stormy weather")
+      throw new Error(`${plane} cannot takeoff due to stormy weather`)
     }
     this.hangar.splice(this.hangar.indexOf(plane), 1);
-    return "Plane has left the building";
+    return `${plane} has taken off`;
   } 
-  throw new Error("Plane is not in airport");
+  throw new Error(`${plane} is not in airport`);
 }; 
