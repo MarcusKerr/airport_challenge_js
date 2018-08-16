@@ -17,7 +17,8 @@ describe("Airport", function(){
       expect(airport.getPlanes()).toContain(plane);
     });
 
-    it("does not land the same plane twice"l function(){
+    it("does not land the same plane twice", function(){
+      spyOn(airport.weather, 'isStormy').and.returnValue(false);
       airport.land(plane)
       expect( function () { airport.land(plane); }).toThrowError(`${plane} has already landed`)
     });

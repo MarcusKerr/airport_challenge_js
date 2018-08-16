@@ -10,11 +10,14 @@ Airport.prototype.getPlanes = function(){
 }
 
 Airport.prototype.land = function(plane){
- if(this.weather.isStormy()){
-   throw new Error(`${plane} cannot land due to stormy weather`)
- }
-this.hangar.push(plane);
-};
+  if (this.hangar.includes(plane)){
+    throw new Error(`${plane} has already landed`)
+  }
+  if(this.weather.isStormy()){
+    throw new Error(`${plane} cannot land due to stormy weather`)
+  }
+  this.hangar.push(plane);
+  };
 
 Airport.prototype.takeoff = function(plane){
   if (this.hangar.includes(plane)) {
