@@ -2,12 +2,12 @@
 describe("Airport", function(){
   var airport;
   var plane;
-  var weather
+  var weather;
 
   beforeEach(function(){
-    plane = new Plane();
+    plane = jasmine.createSpy('Plane');
+    weather = jasmine.createSpyObj('Weather', ['isStormy'])
     airport = new Airport();
-    weather = jasmine.createSpyObj('weather', ['isStormy'])
   });
 
   describe("landing a plane", function() {

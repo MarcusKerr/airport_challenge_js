@@ -4,4 +4,4 @@ var Weather = function(){
 
 Weather.prototype.isStormy = function(){
   return ( Math.random() > this._CHANCEOFWEATHER );
-};
+}
