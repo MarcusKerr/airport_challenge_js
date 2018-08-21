@@ -11,14 +11,16 @@ Airport.prototype.getPlanes = function(){
 }
 
 Airport.prototype.land = function(plane){
+  console.log(this.plane);
+  console.log(`${plane}`);
   if (this.hangar.includes(plane)){
-    throw new Error(`${plane} has already landed`);
+    throw new Error("This plane has already landed");
   }
   else if (this._atCapacity()){
-    throw new Error('Cannot land, maximum capacity has been reached');
+    throw new Error("Cannot land, maximum capacity has been reached");
   }
   else if(this.weather.isStormy()){
-    throw new Error(`${plane} cannot land due to stormy weather`);
+    throw new Error("This plane cannot land due to stormy weather");
   }
   this.hangar.push(plane);
 }
@@ -26,12 +28,12 @@ Airport.prototype.land = function(plane){
 Airport.prototype.takeoff = function(plane){
   if (this.hangar.includes(plane)) {
     if(this.weather.isStormy()){
-      throw new Error(`${plane} cannot takeoff due to stormy weather`);
+      throw new Error("This plane cannot takeoff due to stormy weather");
     }
     this.hangar.splice(this.hangar.indexOf(plane), 1);
-    return `${plane} has taken off`;
+    return "This plane has taken off";
   } 
-  throw new Error(`${plane} is not in airport`);
+  throw new Error("This plane is not in airport");
 }
 
 Airport.prototype._atCapacity = function() {
