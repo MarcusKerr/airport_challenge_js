@@ -14,7 +14,7 @@ Airport.prototype.land = function(plane){
   if (this.hangar.includes(plane)){
     throw new Error(`${plane} has already landed`);
   }
-  else if (this.atCapacity()){
+  else if (this._atCapacity()){
     throw new Error('Cannot land, maximum capacity has been reached');
   }
   else if(this.weather.isStormy()){
@@ -34,6 +34,6 @@ Airport.prototype.takeoff = function(plane){
   throw new Error(`${plane} is not in airport`);
 }
 
-Airport.prototype.atCapacity = function() {
+Airport.prototype._atCapacity = function() {
   return this.hangar.length === this.MAX_CAPACITY;
 }

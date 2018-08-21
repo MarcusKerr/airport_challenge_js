@@ -6,7 +6,7 @@ describe("Airport", function(){
 
   beforeEach(function(){
     plane = jasmine.createSpy('Plane');
-    weather = jasmine.createSpyObj('Weather', ['isStormy'])
+    weather = jasmine.createSpyObj('Weather', ['isStormy']);
     airport = new Airport();
   });
 
@@ -19,8 +19,8 @@ describe("Airport", function(){
 
     it("does not land the same plane twice", function(){
       spyOn(airport.weather, 'isStormy').and.returnValue(false);
-      airport.land(plane)
-      expect( function () { airport.land(plane); }).toThrowError(`${plane} has already landed`)
+      airport.land(plane);
+      expect( function () { airport.land(plane); }).toThrowError(`${plane} has already landed`);
     });
 
     it('prevents a plane from landing in stormy conditions', function (){
@@ -56,7 +56,7 @@ describe("Airport", function(){
         airport.land(plane);
       }
       var p6 = new Plane();
-      expect(function(){ airport.land(p6)}).toThrowError("Cannot land, maximum capacity has been reached")
+      expect(function(){ airport.land(p6)}).toThrowError("Cannot land, maximum capacity has been reached");
     });
   });
 });
